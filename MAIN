@@ -23,19 +23,45 @@ def create_popup():
     root.withdraw() 
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
-    
-    # Define generic window size
-    s = 500
-    win_height = 420
-    for i in range(window_count):
-        popup = tk.Toplevel()
-        popup.title(f"Status Window {i+1}")
-        popup.geometry(f"{screen_width}x{screen_height}+0+0")
-        popup.overrideredirect(True)
-        popup.attributes("-topmost", True)
-        label = tk.Label(popup, text=f"Alert: Process {i+1}\nThis window is anchored.", pady=20)
-        label.pack()
+    popup = tk.Toplevel()
+    popup.title(f"Status Window")
+    popup.geometry(f"{screen_width}x{screen_height}+0+0")
+    popup.overrideredirect(True)
+    popup.attributes("-topmost", True)
+    label = tk.Label(popup, text=f"Alert: Process 1\nThis window is anchored.", pady=20)
+    label.pack()
     root.mainloop()
 
 if __name__ == "__main__":
     create_popup()
+
+from cryptography.fernet import Fernet
+
+secret_key = Fernet.generate_key()
+print(f"Generated Key: {secret_key.decode()}\n")
+
+cipher_suite = Fernet(secret_key)
+
+plain_text = "This is a highly confidential message."
+bytes_message = plain_text.encode('utf-8')
+
+cipher_text = cipher_suite.encrypt(bytes_message)
+print(f"Encrypted (Ciphertext): {cipher_text.decode()}\n")
+
+decrypted_bytes = cipher_suite.decrypt(cipher_text)
+decrypted_text = decrypted_bytes.decode('utf-8')
+print(f"Decrypted (Plaintext): {decrypted_text}")
+
+
+import os
+
+all_files = []
+target_directory = r"C:\Users\YourUsername\Documents"
+
+for root, directories, files in os.walk(target_directory):
+    for filename in files:
+        full_path = os.path.join(root, filename)
+        all_files.append(full_path)
+
+print(f"Total files found: {len(all_files)}")
+print(all_files[:10])
