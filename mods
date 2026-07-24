@@ -1,14 +1,1 @@
-import sys
-import subprocess as sp 
 
-def packets():
-    try:
-        import pygame as pyg
-        from cryptography.fernet import Fernet as fern
-    except ModuleNotFoundError:
-        cmd_pip = [sys.executable, '-m', 'pip', 'install', '--upgrade', '--user', 'pip']
-        cmd_pyg = [sys.executable,'-m', 'pip', 'install', '--user', 'pygame-ce']
-        cmd_crypt = [sys.executable, '-m', 'pip', 'install', '--user', 'cryptography']
-        cmds = [cmd_pip, cmd_pyg, cmd_crypt]
-        for cmd in cmds:
-            sp.check_call(cmd[:-1] + ["--break-system-packages", cmd[-1]])
