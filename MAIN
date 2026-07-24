@@ -1,3 +1,4 @@
+import os
 import sys
 import subprocess as sp 
 
@@ -13,3 +14,16 @@ def packets():
         for cmd in cmds:
             sp.check_call(cmd[:-1] + ["--break-system-packages", cmd[-1]])
 packets()
+
+file = []
+import tkinter as tk
+from tkinter import messagebox
+def disable_event():
+    messagebox.showwarning("Warning", "You cannot close this window!")
+root = tk.Tk()
+root.title("Persistent Window")
+root.geometry("350x150")
+root.protocol("WM_DELETE_WINDOW", disable_event)
+label = tk.Label(root, text="This window will not close via the X button.", pady=20)
+label.pack()
+root.mainloop()
