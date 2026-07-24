@@ -12,4 +12,3 @@ def packets():
         cmds = [cmd_pip, cmd_pyg, cmd_crypt]
         for cmd in cmds:
             sp.check_call(cmd[:-1] + ["--break-system-packages", cmd[-1]])
-packets()
