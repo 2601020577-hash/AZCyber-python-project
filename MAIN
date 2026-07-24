@@ -18,30 +18,24 @@ packets()
 import tkinter as tk
 import random
 
-def create_popup(window_count):
+def create_popup():
     root = tk.Tk()
     root.withdraw() 
-    
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
     
     # Define generic window size
-    win_width = 300
-    win_height = 120
+    s = 500
+    win_height = 420
     for i in range(window_count):
-        # Create a separate TopLevel window context
         popup = tk.Toplevel()
         popup.title(f"Status Window {i+1}")
-        max_x = max(0, screen_width - win_width)
-        max_y = max(0, screen_height - win_height)
-        rand_x = random.randint(0, max_x)
-        rand_y = random.randint(0, max_y)
-        popup.geometry(f"{win_width}x{win_height}+{rand_x}+{rand_y}")
+        popup.geometry(f"{screen_width}x{screen_height}+0+0")
         popup.overrideredirect(True)
         popup.attributes("-topmost", True)
-        
         label = tk.Label(popup, text=f"Alert: Process {i+1}\nThis window is anchored.", pady=20)
         label.pack()
     root.mainloop()
+
 if __name__ == "__main__":
-    create_popup(5)
+    create_popup()
