@@ -37,7 +37,12 @@ def imp_crypt():
         print('incompatable command')
     except Exception as e:
         print(f'unexpected error: {e}')
-
-upd_pip()
-imp_pyg()
-imp_crypt()
+def env:
+    try():
+        upd_pip()
+        imp_pyg()
+        imp_crypt()
+    except:
+        sp.check_call(cmd[:-1] + ['--break-system-packages', cmd[-1]])
+        env()
+env()
