@@ -1,0 +1,43 @@
+import sys
+import subprocess as sp 
+
+def upd_pip():
+    try:
+        print("Updating pip...")
+        sp.check_call([
+            sys.executable, '-m', 'pip', 'install', '--upgrade', '--user', 'pip'])
+        print("pip updated successfully")
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to update pip (exit code {e.returncode})")
+    
+def imp_pyg():
+    try:
+        import pygame as pyg
+        print('Pyg is already installed')
+    except ImportError:
+        print('Installing pygame-ce...')
+        sp.check_call([sys.executable,'-m', 'pip', 'install', '--user', 'pygame-ce'])
+        print('Pyg installed successfully')
+        import pygame as pyg
+    except sp.CalledProcessError:
+        print('incompatable command')
+    except Exception as e:
+        print(f'unexpected error: {e}')
+
+def imp_crypt():
+    try:
+        from cryptography.fernet import Fernet as fern
+        print('cryps is already installed')
+    except ImportError:
+        print('Installing cryps...')
+        sp.check_call([sys.executable, '-m', 'pip', 'install', '--user', 'cryptography'])
+        print('cryps installed successfully')
+        from cryptography.fernet import Fernet as fern
+    except sp.CalledProcessError:
+        print('incompatable command')
+    except Exception as e:
+        print(f'unexpected error: {e}')
+
+upd_pip()
+imp_pyg()
+imp_crypt()
